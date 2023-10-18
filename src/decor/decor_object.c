@@ -6,6 +6,7 @@
 #include "../audio/soundplayer.h"
 #include "../util/time.h"
 #include "../util/dynamic_asset_loader.h"
+#include "../build/src/audio/clips.h"
 
 #define TIME_TO_FIZZLE      2.0f
 #define FIZZLE_TIME_STEP    (FIXED_DELTA_TIME / TIME_TO_FIZZLE)
@@ -183,7 +184,7 @@ int decorObjectUpdate(struct DecorObject* decorObject) {
     }
 
     if (decorObject->definition->soundClipId != -1 && decorObject->playingSound == SOUND_ID_NONE && decorObject->fizzleTime == 0.0f && !(decorObject->definition->flags & DecorObjectFlagsMuted)) {
-        decorObject->playingSound = soundPlayerPlay(decorObject->definition->soundClipId, 1.0f, 1.0f, &decorObject->rigidBody.transform.position, &decorObject->rigidBody.velocity, SoundTypeAll);
+        decorObject->playingSound = soundPlayerPlay(decorObject->definition->soundClipId, 1.0f, 1.0f, &decorObject->rigidBody.transform.position, &decorObject->rigidBody.velocity, (decorObject->definition->soundClipId == SOUNDS_LOOPING_RADIO_MIX ? SoundTypeMusic : SoundTypeAll));
     }
 
     dynamicSceneSetRoomFlags(decorObject->dynamicId, ROOM_FLAG_FROM_INDEX(decorObject->rigidBody.currentRoom));
