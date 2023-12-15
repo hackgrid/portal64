@@ -553,7 +553,7 @@ $(CP_LD_SCRIPT)_no_debug.ld: $(LD_SCRIPT) build/levels.ld build/dynamic_models.l
 
 $(BASE_TARGET_NAME).z64: $(CODESEGMENT)_no_debug.o $(OBJECTS) $(DATA_OBJECTS) $(SUBTITLE_OBJECTS) $(CP_LD_SCRIPT)_no_debug.ld
 	$(LD) -L. -T $(CP_LD_SCRIPT)_no_debug.ld -Map $(BASE_TARGET_NAME)_no_debug.map -o $(BASE_TARGET_NAME).elf
-	$(OBJCOPY) --pad-to=0x100000 --gap-fill=0xFF $(BASE_TARGET_NAME).elf $(BASE_TARGET_NAME).z64 -O binary
+	$(OBJCOPY) --pad-to=0x1800000 --gap-fill=0xFF $(BASE_TARGET_NAME).elf $(BASE_TARGET_NAME).z64 -O binary
 	makemask $(BASE_TARGET_NAME).z64
 
 # with debugger
