@@ -497,7 +497,7 @@ build/assets/sound/sounds.sounds build/assets/sound/sounds.sounds.tbl: $(SOUND_C
 
 build/asm/sound_data.o: build/assets/sound/sounds.sounds build/assets/sound/sounds.sounds.tbl
 
-build/src/audio/clips.h build/src/audio/languages.h build/src/audio/languages.c: tools/generate_sound_ids.js $(SOUND_CLIPS)
+build/src/audio/clips.h build/src/audio/languages.h build/src/audio/languages.c: tools/generate_sound_ids.js $(SOUND_CLIPS) build/asm/sound_data.o
 	@mkdir -p $(@D)
 	node tools/generate_sound_ids.js -o $(@D) -p SOUNDS_ $(SOUND_CLIPS)
 
